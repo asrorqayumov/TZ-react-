@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
   font-family: "Laviossa RUS";
+  font-size: 16px;
 }
 
 .btn_primary {
@@ -23,8 +24,10 @@
 }
 
 .main_section {
-  padding: 30px 94px 30px 94px;
   min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .input {

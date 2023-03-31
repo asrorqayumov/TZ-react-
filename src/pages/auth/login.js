@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Toast } from "./../../utils/toastify";
 import "./style.css";
 
-const Login = ({setData}) => {
-
+const Login = ({ handleAuth }) => {
   const [user, setUser] = useState({
     _username: "",
     _password: "",
@@ -20,19 +19,20 @@ const Login = ({setData}) => {
 
   const formHandler = async (e) => {
     e.preventDefault();
-    try {
-      const formData = new FormData();
-      formData.append("_username", user._username);
-      formData.append("_password", user._password);
-      formData.append("_subdomain", user._subdomain);
-      const response = await logInRequest(formData);
+    const formData = new FormData();
+    formData.append("_username", user._username);
+    formData.append("_password", user._password);
+    formData.append("_subdomain", user._subdomain);
+    const response = await logInRequest(formData);
+    if (response.status == 200) {
       localStorage.setItem("token", response?.data?.token);
-      setData('success')
-    } catch (err) {
-      console.log(err);
+      handleAuth(response?.data?.token);
+      navigate("/home");
+    } else {
+      console.log(response);
       Toast.fire({
         icon: "error",
-        title: `${err?.response?.data?.message}`,
+        title: `Something went wrong`,
       });
     }
   };

@@ -10,9 +10,9 @@ export function logInRequest(data) {
 }
 
 // items
-export function getItems() {
+export function getItems(size) {
   return axios
-    .get(`/variations`)
+    .get(`/variations?size=${size}`,)
     .then((res) => res)
     .catch((err) => err);
 }
