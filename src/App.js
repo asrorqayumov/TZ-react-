@@ -21,6 +21,10 @@ function App() {
           path="/home"
           element={<Main handleAuth={(e) => handleAuth(e)} />}
         />
+         <Route
+          path="/"
+          element={<Main handleAuth={(e) => handleAuth(e)} />}
+        />
       </Routes>
     );
   } else {
