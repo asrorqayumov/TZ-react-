@@ -29,7 +29,6 @@ const Login = ({ handleAuth }) => {
       handleAuth(response?.data?.token);
       navigate("/home");
     } else {
-      console.log(response);
       Toast.fire({
         icon: "error",
         title: `Something went wrong`,
@@ -52,6 +51,7 @@ const Login = ({ handleAuth }) => {
                 type="text"
                 name="_username"
                 id="_username"
+                required
                 onChange={inputHandler}
               />
             </div>
@@ -63,6 +63,7 @@ const Login = ({ handleAuth }) => {
                 className="input"
                 type="password"
                 name="_password"
+                required
                 id="_password"
                 onChange={inputHandler}
               />

@@ -1,7 +1,7 @@
 import Axios from "axios";
 
 const axios = Axios.create({
-  baseURL:'https://toko.ox-sys.com',
+  baseURL:`${process.env.REACT_APP_BACKEND_URL}`,
   // withCredentials: true,
 });
 axios.interceptors.request.use(

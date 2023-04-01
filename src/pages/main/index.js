@@ -1,27 +1,40 @@
 import "./style.css";
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { getItems } from "../../api/requests";
 import DataTable from "react-data-table-component";
 import { Columns } from "../../utils/Columns";
 import Navbar from "../../components/Navbar";
 
-const Main = () => {
+const Main = ({ handleAuth }) => {
   const [data, setData] = useState([]);
+  const [search, setSearch] = useState("");
+
   useEffect(() => {
-    getItems(50, 1)
+    getItems(80)
       .then((res) => setData(res?.data?.items))
       .catch((err) => console.log(err));
   }, []);
 
   return (
     <section className="section__page">
-    <Navbar />
+      <Navbar isSearch={false} handleAuth={handleAuth} />
+      <div className="inpotForm">
+        <input
+          type="search"
+          placeholder="Search..."
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </div>
       <div className="table">
         {data && (
           <DataTable
             columns={Columns}
-            data={data}
+            data={data.filter((item) => {
+              return search.toLowerCase() === ""
+                ? item
+                : item.name.toLowerCase().includes(search) ||
+                    item.properties[1].value.toLowerCase().includes(search);
+            })}
             fixedHeader
             pagination
           ></DataTable>

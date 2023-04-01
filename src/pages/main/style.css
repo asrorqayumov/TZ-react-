@@ -1,8 +1,22 @@
 .section__page {
   min-height: 100vh;
-  display: grid;
 }
 
 .table {
-  padding: 10px 20px;
+  padding: 0px 20px 0px 20px;
+}
+
+.inpotForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+.inpotForm input {
+  padding: 9px 10px;
+  border-radius: 10px;
+  border: 0.5px solid #000;
+  outline: none;
+  width: 250px;
 }

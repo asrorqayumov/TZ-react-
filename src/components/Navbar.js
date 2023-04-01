@@ -1,11 +1,29 @@
+import React from "react";
 
+import "./style.css";
+import { Link, useNavigate } from "react-router-dom";
 
-import React from 'react'
-
-export default function Navbar() {
+export default function Navbar({ handleAuth }) {
+  const navigate = useNavigate();
+  const clearLocalStorage = () => {
+    localStorage.clear();
+    handleAuth("success");
+    navigate("/");
+  };
   return (
-    <navbar>
-    
-    </navbar>
-  )
+    <nav>
+      <ul>
+        <li>
+          <Link className="link_button" to={"/home"}>
+            Home
+          </Link>
+        </li>
+        <li>
+          <button onClick={clearLocalStorage} className="btn_white">
+            Log Out
+          </button>
+        </li>
+      </ul>
+    </nav>
+  );
 }
