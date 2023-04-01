@@ -14,6 +14,10 @@ function App() {
     return (
       <Routes>
         <Route
+          path="/"
+          element={<Main handleAuth={(e) => handleAuth(e)} />}
+        />
+         <Route
           path="/home"
           element={<Main handleAuth={(e) => handleAuth(e)} />}
         />
